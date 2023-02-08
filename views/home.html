@@ -48,50 +48,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <script src="./socket.io/socket.io.js"></script>
-
-    <script>
-
-        var socket = io.connect('http://192.168.2.109:3000');
-
-        let message_data = [];
-        socket.on('server-send-data', function (data) {
-            message_data = data;
-            _li = '';
-            data.forEach(item => {
-                _li += `<li class="list-group-item">
-                            <span class="badge">${item.author}</span>
-                            ${item.text} ..
-                        </li>`;
-            });
-
-            $('#message-list').html(_li);
-        })
-
-        socket.on('server-send', function (data) {
-            _li = '';
-            let message = {
-                text: data,
-                author: 'bkap',
-                date: new Date()
-            };
-            
-            message_data.push(message);
-
-            message_data.forEach(item => {
-                _li += `<li class="list-group-item">
-                            <span class="badge">${item.author}</span>
-                            ${item.text} ..
-                        </li>`;
-            });
-
-            $('#message-list').html(_li);
-        })
-
-        $('#send').click(function () {
-            var text = $('#text-mesage').val();
-            socket.emit('client-send', text);
-        })
-    </script>
+    <script src="./js/client.js"></script>
 </body>
 
 </html>
